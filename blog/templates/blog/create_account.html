@@ -1,0 +1,16 @@
+{% extends 'blog/layout.html' %}
+{% block content %}
+    <h1>create account</h1>
+    <form action="/account/create_handler/" method="POST">
+        {% csrf_token %}
+        {{create_user_form.as_p}}
+        <input type="submit" value="SignUp" class="btn btn-primary">
+    </form>
+    {% if msg %}
+            <h3 class="text text-danger">
+            *{{msg}}*
+            </h3>
+    {% endif %}
+    
+    
+{% endblock %}

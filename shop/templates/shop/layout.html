@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'blog\css\bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'blog\sass\site_style.css' %}">
+</head>
+<body>
+    <!-- <div><h1 class="text text-primary">header</h1></div> -->
+    <div class="site-nav">
+        <div class="left-items">
+            <ul class="site-nav-bar">
+                <li class="site-nav-item"><a href="/">home</a></li>
+                <li class="site-nav-item"><a href="/posts/">blog</a></li>
+                <li class="site-nav-item"><a href="/posts/">shop</a></li>
+                <li class="site-nav-item"><a href="/posts/contact/">contact</a></li>
+            </ul>
+        </div>
+        <div class="right-items">
+            <ul class="site-nav-bar">
+                {% if user.is_authenticated or not user.is_authenticated %}
+                <li class="site-nav-item"><a href="/account/">account</a></li>
+                {% endif %}
+
+                {% if not user.is_authenticated %}
+                <li class="site-nav-item"><a href="/account/login/">login</a></li>
+                {% endif %}
+                
+                {% if user.is_authenticated %}
+                <li class="site-nav-item"><a href="/account/logout/">logout</a></li>
+                {% endif %}
+
+                {% if not user.is_authenticated %}
+                <li class="site-nav-item"><a href="/account/create/">register</a></li>
+                {% endif %}
+                
+                
+            </ul>
+        </div>
+        
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
